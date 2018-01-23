@@ -1,0 +1,8 @@
+# Various temp files.
+*.DS_Store
+*.swp
+*.swo
+.vagrant
+
+# Local Vagrant config file
+/Vagrant.local.yml

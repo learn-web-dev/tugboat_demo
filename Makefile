@@ -6,7 +6,7 @@ packages:
 
 drupalconfig:
 	cp /var/www/html/sites/default/tugboat.settings.php /var/www/html/sites/default/settings.local.php
-	echo "\$settings['hash_salt'] = '$(openssl rand -hex 32)';" >> /var/www/html/sites/default/settings.local.php
+	echo "\$$settings['hash_salt'] = '$$(openssl rand -hex 32)';" >> /var/www/html/sites/default/settings.local.php
 
 createdb:
 	mysql -h mysql -u tugboat -ptugboat -e "create database demo;"

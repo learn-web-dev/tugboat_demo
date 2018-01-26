@@ -58,6 +58,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         service apache2 restart
         mysql -e "create database drupal8;"
         mysql -e "grant all on drupal8.* to drupal8@'%' identified by 'drupal8';"
+        mkdir /var/www/files /var/www/html/sites/default/files
+        chgrp www-data /var/www/files
+        chmod 2775 /var/www/files
+        mount -o bind /var/www/files /var/www/html/sites/default/files
     SHELL
 
     # Add defined SSH public key to vagrant user's authorized_keys

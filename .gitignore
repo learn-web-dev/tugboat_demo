@@ -6,3 +6,6 @@
 
 # Local Vagrant config file
 /Vagrant.local.yml
+
+# Local drupal config file
+/docroot/sites/*/settings.local.php

@@ -8,6 +8,7 @@ packages:
 	composer install
 
 drupalconfig:
+	cp /var/lib/tugboat/dist/settings.php /var/www/html/sites/default/settings.php
 	cp /var/lib/tugboat/dist/tugboat.settings.php /var/www/html/sites/default/settings.local.php
 	echo "\$$settings['hash_salt'] = '$$(openssl rand -hex 32)';" >> /var/www/html/sites/default/settings.local.php
 

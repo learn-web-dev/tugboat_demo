@@ -1,11 +1,17 @@
 packages:
 	apt-get update
-	apt-get install -y mysql-client rsync
-	curl -L "https://github.com/drush-ops/drush/releases/download/8.1.15/drush.phar" > /usr/local/bin/drush
+	apt-get install -y mysql-client rsync wget
+	# Install drush-launcher. This assumes you are using composer to install
+	# your desired version of Drush.
+	wget -O /usr/local/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.5.1/drush.phar
 	chmod +x /usr/local/bin/drush
+	composer install
+	ln -sf ${TUGBOAT_ROOT}/web /var/www/html
+
 
 drupalconfig:
-	cp /var/www/html/sites/default/tugboat.settings.php /var/www/html/sites/default/settings.local.php
+	cp ${TUGBOAT_ROOT}/dist/settings.php /var/www/html/sites/default/settings.php
+	cp ${TUGBOAT_ROOT}/dist/tugboat.settings.php /var/www/html/sites/default/settings.local.php
 	echo "\$$settings['hash_salt'] = '$$(openssl rand -hex 32)';" >> /var/www/html/sites/default/settings.local.php
 
 createdb:
